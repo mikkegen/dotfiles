@@ -6,16 +6,18 @@
 [ -z "$PS1" ] && return
 
 # don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
+# export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
+# export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoredups:ignorespace
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
 shopt -s histappend
-export HISTSIZE=1000000 HISTFILESIZE=1000000
+export HISTSIZE=10000
+export HISTFILESIZE=100000
 export HISTFILE=~/.bash_history_save
 export PROMPT_COMMAND='history -a'
 
@@ -139,6 +141,15 @@ if [ -d $J4H ] ; then
     export JAVA4_HOME=$J4H
 fi
 
+if [ -d /opt/scala ]; then
+   export SCALA_HOME=/opt/scala
+   export PATH=$SCALA_HOME/bin:$PATH
+fi
+
+if [ -d ~/opt/node ]; then 
+   export NODEJS_HOME=~/opt/node
+   export PATH=$NODEJS_HOME/bin:$PATH
+fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d ~/bin ] ; then
